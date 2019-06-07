@@ -1,0 +1,46 @@
+.home {
+  height: 2000px;
+  #hero {
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 100px;
+    overflow: hidden;
+    position: relative;
+    .container {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      min-height: 528px;
+      padding: 150px 0 100px;
+      text-align: center;
+      color: white;
+    }
+  }
+
+  #about-us {
+    padding: 100px 0;
+    .container {
+      text-align: center;
+      .row {
+        justify-content: center;
+      }
+    }
+  }
+
+  #shows {
+    padding: 100px 0;
+    background-size: cover;
+    background-attachment: fixed;
+    .container {
+      padding: 30px;
+      .row {
+        margin: 30px;
+      }
+    }
+  }
+
+  #contact {
+    padding: 50px 0;
+  }
+}

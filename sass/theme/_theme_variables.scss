@@ -1,0 +1,12 @@
+// Use this file to overwrite the basic Bootstrap variables and add your own variables
+// To overwrite a Bootstrap variable you don´t have to touch the Bootstrap folder.
+// Just copy a variable from src/sass/bootstrap4/_variables.scss, paste it here and edit the value.
+
+$primary: #f77925;
+$secondary: #60b99b;
+$tertiary: #d3ce3c;
+$blue: #60b99b;
+$green: #d3ce3c;
+$orange: #f77925;
+$danger: $primary;
+$clear: rgba(0, 0, 0, 0);
