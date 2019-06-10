@@ -15,6 +15,21 @@ $container = get_theme_mod( 'understrap_container_type' );
 ?>
 <?php get_template_part( 'sidebar-templates/sidebar', 'footerfull' ); ?>
 
+<section class="footer-social">
+  <div class="container">
+    <ul>
+      <?php
+    if (get_theme_mod('phone') !== '') {
+      echo "<li><i class='fa fa-phone'></i> " . get_theme_mod('phone') . "</li>";
+    }
+    if (get_theme_mod('email') !== '') {
+      echo "<li><i class='fa fa-envelope'></i> " . get_theme_mod('email') . "</li>";
+    }
+    ?>
+    </ul>
+  </div>
+</section>
+
 <div class="wrapper" id="wrapper-footer">
 
   <div class="<?php echo esc_attr( $container ); ?>">
@@ -27,7 +42,8 @@ $container = get_theme_mod( 'understrap_container_type' );
 
           <div class="site-info">
 
-            <?php understrap_site_info(); ?>
+            <?php echo '<p>&copy;<a href="' . get_bloginfo('url') . '">' . get_bloginfo('name') . '</a> ' . date('Y') . '. All Rights Reserved.</p>'; ?>
+            <small>Site by <a href="https://www.iamtimsmith.com">Tim Smith</a></small>
 
           </div><!-- .site-info -->
 

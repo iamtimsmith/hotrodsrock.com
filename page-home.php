@@ -7,14 +7,17 @@ $contact = get_Field('contact_section');
 $bottom = get_Field('bottom_section');
 get_header(); ?>
 
-<div id="hero" class="jumbotron jumbotron-fluid" style="background-image: url('<?php echo $hero['image'] ?>')">
+<div id="hero" class="jumbotron jumbotron-fluid">
+  <video autoplay loop muted>
+    <source src="<?php echo $hero['background'] ?>">
+  </video>
   <div class="container">
     <div class="content">
       <div>
-        <h1 class="display-2"><?php echo $hero['headline'] ?></h1>
+        <h1 class="display-3"><?php echo $hero['headline'] ?></h1>
         <p class="lead"><?php echo $hero['subheadline'] ?></p>
         <?php if ($hero['button']) { ?>
-        <a href="<?php echo $hero['button']['url'] ?>" class="btn btn-secondary btn-lg">
+        <a href="<?php echo $hero['button']['url'] ?>" class="btn btn-primary btn-lg">
           <?php echo $hero['button']['title'] ?>
         </a>
         <?php } ?>
@@ -35,7 +38,6 @@ get_header(); ?>
 </section>
 
 <section id="shows">
-  <!-- <section id="shows" style="background-image:url('<?php echo $shows["image"] ?>');"> -->
   <div class="container">
     <div class="row">
       <h1>Shows</h1>
@@ -45,6 +47,7 @@ get_header(); ?>
             <th>Date</th>
             <th>Time</th>
             <th>Location</th>
+            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -63,6 +66,7 @@ $the_query = new WP_Query( $args );
             <td><?php echo get_field('show_date') ?></td>
             <td><?php echo get_field('show_time') ?></td>
             <td><?php echo get_field('show_location') ?></td>
+            <td><?php echo get_field('show_notes') ?></td>
           </tr>
           <?php } ?>
           <?php endwhile; else: ?> <p>We don't have anything booked yet. Check back soon!</p> <?php endif; ?>
@@ -73,18 +77,14 @@ $the_query = new WP_Query( $args );
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" style="background-image:url('<?php echo $contact['bg_image'] ?>')">
   <div class="container">
-    <h1><?php echo $contact['headline'] ?></h1>
     <?php
     $form = $contact['form'];
     $shortcode = "[contact-form-7 id='" . $form->ID . "' title='" . $form->post_title . "']";
     echo do_shortcode( $shortcode );
     ?>
   </div>
-</section>
-
-<section id="bottom" style="background-image:url('<?php echo $bottom['image'] ?>')">
 </section>
 
 <?php get_footer(); ?>

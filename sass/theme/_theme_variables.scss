@@ -2,11 +2,16 @@
 // To overwrite a Bootstrap variable you don´t have to touch the Bootstrap folder.
 // Just copy a variable from src/sass/bootstrap4/_variables.scss, paste it here and edit the value.
 
-$primary: #f77925;
-$secondary: #60b99b;
-$tertiary: #d3ce3c;
+$primary: #c92c2c;
+$secondary: #111;
+$tertiary: rgba(white, 0.8);
+$midLight: #fafafa;
+$midDark: #e7e7e7;
 $blue: #60b99b;
 $green: #d3ce3c;
 $orange: #f77925;
-$danger: $primary;
+$danger: #c92c2c;
 $clear: rgba(0, 0, 0, 0);
+
+$headerFont: 'Roboto Condensed', sans-serif;
+$contentFont: 'Roboto', sans-serif;

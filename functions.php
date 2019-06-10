@@ -63,3 +63,51 @@ function create_shows() {
 	}
 	// Hooking up our function to theme setup
 	add_action( 'init', 'create_shows' );
+
+	/**
+	 * Add Swipebox js and styles on Gallery Template
+	 */
+	add_action('wp_enqueue_scripts','Load_Gallery_Template_Scripts');
+	function Load_Gallery_Template_Scripts(){
+			if ( is_page_template('gallery.php') ) {
+					wp_enqueue_script('swipebox', get_template_directory_uri() . '/js/jquery.swipebox.min.js', array('jquery'), '1.0', false);
+					wp_enqueue_style('swipebox-css', get_template_directory_uri() . '/css/swipebox.min.css');
+			} 
+	}
+
+
+	/**
+	 * Set up Site-Wide settings in Customizer
+	 */
+	function hotrodsrock_customize_register( $wp_customize ) {
+		$wp_customize->add_section( 'hotrodsrock_custom' , array(
+			'title'      => __( 'Site Settings', 'hotrodsrock' ),
+			'priority'   => 30,
+		) );
+
+		$wp_customize->add_setting( 'phone' , array(
+			'default'   => '',
+			'transport' => 'refresh',
+		) );
+
+		$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'phone_number', array(
+			'label'      => __( 'Phone Number', 'hotrodsrock' ),
+			'section'    => 'hotrodsrock_custom',
+			'settings'   => 'phone',
+			'type'			 => 'text'
+		) ) );
+
+		$wp_customize->add_setting( 'email' , array(
+			'default'   => '',
+			'transport' => 'refresh',
+		) );
+
+		$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'email_address', array(
+			'label'      => __( 'Email Address', 'hotrodsrock' ),
+			'section'    => 'hotrodsrock_custom',
+			'settings'   => 'email',
+			'type'			 => 'text'
+		) ) );
+	
+ }
+ add_action( 'customize_register', 'hotrodsrock_customize_register' );

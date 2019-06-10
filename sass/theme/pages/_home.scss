@@ -1,11 +1,25 @@
 .home {
-  height: 2000px;
   #hero {
-    background-size: cover;
-    background-attachment: fixed;
     padding: 100px;
     overflow: hidden;
     position: relative;
+    color:white;
+    &:after {
+      content:'';
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.8), rgba(0,0,0,0));
+    }
+    video {
+      position:absolute;
+      top:0;
+      left:0;
+      min-width:100%;
+      min-height:100%;
+    }
     .container {
       display: flex;
       justify-content: center;
@@ -13,13 +27,17 @@
       z-index: 2;
       min-height: 528px;
       padding: 150px 0 100px;
-      text-align: center;
-      color: white;
+      >div {
+        padding: 30px;
+        text-align:center;
+      }
     }
   }
 
   #about-us {
     padding: 100px 0;
+    background:#111;
+    color:white;
     .container {
       text-align: center;
       .row {
@@ -41,6 +59,20 @@
   }
 
   #contact {
+    background-color: #fafafa;
+    background-attachment:fixed;
+    background-size:cover;
     padding: 50px 0;
+    .wpcf7 {
+      max-width:700px !important;
+      form {
+        background: white;
+        padding: 25px;
+        textarea {
+          height:150px;
+          resize: none !important;
+        }
+      }
+    }
   }
 }

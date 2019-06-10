@@ -1,0 +1,16 @@
+#page-wrapper {
+  margin-top:59px;
+  #content {
+    overflow-x:hidden;
+    .header-image {
+      height:200px;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .entry-header {
+      margin-top:41px;
+    }
+  }
+}
