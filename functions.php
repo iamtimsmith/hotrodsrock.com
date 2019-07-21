@@ -57,7 +57,7 @@ function create_shows() {
 		),
 		'public' => true,
 		'has_archive' => true,
-		'menu_icon' => 'dashicons-tickets'
+		'menu_icon' => 'dashicons-tickets',
 	 )
 	);
 	}
