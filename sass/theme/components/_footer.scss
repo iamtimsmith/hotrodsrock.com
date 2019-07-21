@@ -1,0 +1,21 @@
+.footer-social {
+  background: $secondary;
+  .container {
+    ul {
+      height:100px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:0;
+      list-style:none;
+      color: $tertiary;
+      li {
+        margin:0 30px;
+      }
+    }
+  }
+}
+
+.site-footer {
+  text-align:center;
+}

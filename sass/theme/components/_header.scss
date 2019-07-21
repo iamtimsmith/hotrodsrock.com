@@ -1,7 +1,12 @@
 .navbar {
-  background: rgba(white, 0.75) !important;
+  // background: linear-gradient(to left, $primary 0%, $danger 50%, $primary 100%) !important;
+  background: $primary !important;
+
   a {
-    color: black !important;
+    color: white !important;
+    text-transform: uppercase;
+    font-weight:700;
+    font-family: $headerFont;
     img {
       max-height: 60px;
       width: auto;

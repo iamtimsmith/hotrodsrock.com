@@ -1,0 +1,16 @@
+.gallery-wrapper {
+  display:flex;
+  flex-wrap:wrap;
+  a {
+    width: calc(100% / 3);
+    padding:20px;
+    overflow:hidden;
+    display:flex-block;
+    justify-content:center;
+    img {
+      height: 300px;
+      width:auto;
+      max-width: none;
+    }
+  }
+}

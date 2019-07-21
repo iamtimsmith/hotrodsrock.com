@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed:300,700&display=swap');
+
 @import "admin";
 @import "element";
 
-@import "components/background";
 @import "components/header";
+@import "components/footer";
 
+@import "pages/page";
 @import "pages/home";
+@import "pages/gallery";
