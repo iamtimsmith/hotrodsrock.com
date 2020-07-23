@@ -56,24 +56,34 @@ get_header();?>
         </thead>
         <tbody>
           <?php
-$yesterday = date("F j, Y", time() - 60 * 60 * 48);
-$args = array(
-    'orderby' => 'date',
+$query = new WP_Query([
     'post_type' => 'shows',
-    'post_count' => 10,
-);
-$the_query = new WP_Query($args);
-?>
-          <?php if ($the_query->have_posts()): while ($the_query->have_posts()): $the_query->the_post();?>
-          <?php if (get_field('show_date') <= $yesterday) {?>
+    'numberposts' => -1,
+    'meta_query' => [
+        'relation' => 'OR',
+        [
+            'key' => 'show_date',
+            'value' => date('Ymd', strtotime('now')),
+            'compare' => '>='
+        ]
+    ],
+	'meta_key' => 'show_date',
+	'orderby' => 'meta_value_num',
+    'order' => 'ASC'
+]);
+
+$events = $query->posts;
+?>			
+			<?php if (count($events) > 0) : foreach($events as $event) : ?>
           <tr>
-            <td><?php echo get_field('show_date') ?></td>
-            <td><?php echo get_field('show_time') ?></td>
-            <td><?php echo get_field('show_location') ?></td>
-            <td><?php echo get_field('show_notes') ?></td>
+            <td><?php echo get_field('show_date', $event->ID) ?></td>
+            <td><?php echo get_field('show_time', $event->ID) ?></td>
+            <td><?php echo get_field('show_location', $event->ID) ?></td>
+            <td><?php echo get_field('show_notes', $event->ID) ?></td>
           </tr>
-          <?php }?>
-          <?php endwhile;else: ?> <p>We don't have anything booked yet. Check back soon!</p> <?php endif;?>
+          <?php endforeach; else : ?>
+			 <p>We don't have anything booked yet. Check back soon!</p>
+			<?php endif;?>
           <?php wp_reset_query();?>
         </tbody>
       </table>
