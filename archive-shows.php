@@ -11,6 +11,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+$query = new WP_Query([
+    'post_type' => 'shows',
+    'numberposts' => -1,
+    'meta_query' => [
+        'relation' => 'OR',
+        [
+            'key' => 'show_date',
+            'value' => date('Ymd', strtotime('now')),
+            'compare' => '>='
+        ]
+    ],
+	'meta_key' => 'show_date',
+	'orderby' => 'meta_value_num',
+    'order' => 'ASC'
+]);
+
+$events = $query->posts;
+
 get_header();
 
 $container = get_theme_mod( 'understrap_container_type' );
@@ -27,7 +45,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
       <main class="site-main" id="main">
 
-        <?php if ( have_posts() ) : ?>
+        <?php if ( count($events) > 0 ) : ?>
 
         <header class="entry-header">
           <?php
@@ -46,27 +64,15 @@ $container = get_theme_mod( 'understrap_container_type' );
             </tr>
           </thead>
           <tbody>
-            <?php /* Start the Loop */ ?>
-            <?php while ( have_posts() ) : the_post(); ?>
-
-            <?php
-
-						/*
-						 * Include the Post-Format-specific template for the content.
-						 * If you want to override this in a child theme, then include a file
-						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-						 */
-            $yesterday = date("F j, Y", time() - 60 * 60 * 48);
-            if (get_field('show_date') <= $yesterday) :
-            ?>
+			  
+            <?php foreach($events as $event) : ?>
             <tr>
-              <td><?php echo get_field('show_date') ?></td>
-              <td><?php echo get_field('show_time') ?></td>
-              <td><?php echo get_field('show_location') ?></td>
-              <td><?php echo get_field('show_notes') ?></td>
+              <td><?php echo get_field('show_date', $event->ID) ?></td>
+              <td><?php echo get_field('show_time', $event->ID) ?></td>
+              <td><?php echo get_field('show_location', $event->ID) ?></td>
+              <td><?php echo get_field('show_notes', $event->ID) ?></td>
             </tr>
-            <?php endif; ?>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
 
             <?php else : ?>
 
